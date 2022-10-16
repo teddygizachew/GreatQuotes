@@ -27,6 +27,13 @@ function display_authors($authors_array)
 </head>
 
 <body>
+  
+  <div class="home-page-link">
+    <a class="homeLink" href="../index.php">
+      <img src="../assets/home.svg" alt="">
+    </a>
+  </div>
+    
   <h1>Authors name</h1>
   <?php
   display_authors($authors_array);
