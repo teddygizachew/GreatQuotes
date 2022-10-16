@@ -52,6 +52,9 @@ function display_quotes($authors_array, $quotes_array)
       <a href="create.php">
         <button type="button" class="btn btn-success" type="submit">Create Quote</button>
       </a>
+      <a href="authors/index.php">
+        <button type="button" class="btn btn-primary" type="submit">View Authors</button>
+      </a>
     </div>
   </div>
 
