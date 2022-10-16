@@ -6,8 +6,11 @@ $authors_array = read_csv($authors_filename);
 
 function display_authors($authors_array)
 {
+  $index=0;
   foreach ($authors_array as $authors) {
-    echo '<h4>' . $authors . '<h4/>';
+    // echo '<h4>' . $authors . '<h4>';
+    echo '<h4><a href=detail.php?index='.$index.'>'.$authors.'</a><h4/>';
+    $index++;
   }
 }
 
