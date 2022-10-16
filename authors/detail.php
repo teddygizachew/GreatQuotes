@@ -6,7 +6,7 @@ $authors_array = read_csv('../data/authors.csv');
 $author_name = $authors_array[$index];
 
 function printQuote($filename,$index){
-    $fh=fopen('../data/quotes.csv', 'r');
+    $fh=fopen($filename, 'r');
 
     $i=0;
     while($line=fgets($fh)) {
