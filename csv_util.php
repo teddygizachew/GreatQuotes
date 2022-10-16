@@ -7,7 +7,7 @@ function read_csv($filename): array
 
     $line_array = array();
     while ($line = fgets($fh)) {
-      array_push($line_array, ($line));
+      array_push($line_array, (trim($line)));
     }
     fclose($fh);
     return $line_array;
@@ -57,7 +57,7 @@ function add_element($filename, $element)
 function modify_element($filename, $index, $element)
 {
   $line_counter = 0;
-  $new_file_content = '-';
+  $new_file_content = '';
   $line_array = read_csv($filename);
   $fh = fopen($filename, 'r');
   while ($line = fgets($fh)) {
