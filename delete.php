@@ -17,6 +17,10 @@ if (isset($_POST['delete'])) {
   </a>';
 }
 
+if (isset($_POST['NotDelete'])) {
+  header('Location: index.php');
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +42,7 @@ if (isset($_POST['delete'])) {
     Are you sure you want to delete the following quote?
     <button type="submit" class="btn btn-outline-danger" name="delete" value="submit">Yes</button>
     <a href="index.php">
-      <button type="submit" value="submit" class="btn btn-outline-secondary">No</button>
+      <button type="submit" name="NotDelete" value="submit" class="btn btn-outline-secondary">No</button>
     </a>
 
     <br />

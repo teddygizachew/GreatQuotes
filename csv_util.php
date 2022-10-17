@@ -25,6 +25,7 @@ function get_element($filename, $index)
 
 function add_element($filename, $element)
 {
+  $error='';
   if (file_exists($filename)) {
     $fh = fopen($filename, 'r');
 
