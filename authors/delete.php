@@ -1,21 +1,27 @@
 <?php
-$author_to_be_deleted = $_GET['index'];
+include'../csv_util.php'; 
 
-$line_counter = 0;
-$new_file_content='';
-$fh = fopen('../data/authors.csv', 'r');
-while($line=fgets($fh)) {
-  if ($line_counter == $_GET['index']) {
-    $new_file_content.=PHP_EOL;
-  }
-  else{
-    $new_file_content.=$line;
-  }
-  $line_counter++;
+if(!isset($_GET['index'])){
+    die('Please enter the author you want to delete');
 }
+
+$fh=fopen('../data/quotes.csv', 'r');
+$index = $_GET['index'];
+$i=0;
+while($line=fgets($fh)) {
+  $line_array = explode(";",$line);
+  if ($index==trim($line_array[0])) {
+    remove_element('../data/quotes.csv', $i);
+  $i=$i-1;
+  }
+  $i = $i + 1;
+}
+
+empty_element('../data/authors.csv', $_GET['index']);
+
 fclose($fh);
 
-file_put_contents('../data/authors.csv', $new_file_content);
+
 ?>
 
-// http://localhost/NKU/Great_Quotes/authors/delete.php?index=2
+<a href="index.php">back to index page</a>
