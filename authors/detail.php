@@ -23,14 +23,14 @@ function printQuote($filename,$index){
     fclose($fh);
     }
 
-function author_logged()
+function author_logged($index)
 {
   if (logged_in()) {
     $str = '
-      <a href="modify.php?index=<?= $index ?>">
+      <a href="modify.php?index='.$index.'">
         <button type="button" class="btn btn-outline-warning">Modify Author</button>
       </a>
-      <a href="delete.php?index=<?= $index ?>">
+      <a href="delete.php?index='.$index.'">
         <button type="button" class="btn btn-outline-danger">Delete Author</button>
       </a>
     ';
@@ -63,7 +63,7 @@ function author_logged()
 <h1 class="top-header"><?= $author_name ?></h1>
 <div class="add-button-div">
 <?php
-echo author_logged();
+echo author_logged($index);
 ?>
   </div>
 <div class="center-screen">
