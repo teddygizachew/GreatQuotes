@@ -64,7 +64,7 @@ function logged()
     <br />
     <div class="add-button-div">
       <?php
-      logged()
+      logged();
       ?>
       <a href="authors/index.php" class="link-tag">
         <button type="button" class="btn btn-primary" type="submit">View Authors</button>
@@ -80,7 +80,7 @@ function logged()
       </a>
       <br/>
       <br/>
-      <a href="signin.php" class="link-tag">
+      <a href="signout.php" class="link-tag">
         <button type="button" class="btn btn-danger" type="submit">Sign out</button>
       </a>
     </div>

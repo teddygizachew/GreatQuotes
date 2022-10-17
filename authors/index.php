@@ -1,16 +1,31 @@
 <?php
 include '../csv_util.php';
+include '../auth.php';
+
+session_start();
 
 $authors_filename = '../data/authors.csv';
 $authors_array = read_csv($authors_filename);
 
 function display_authors($authors_array)
 {
-  $index=0;
+  $index = 0;
   foreach ($authors_array as $authors) {
     // echo '<h4>' . $authors . '<h4>';
-    echo '<h4><a href=detail.php?index='.$index.'>'.$authors.'</a><h4/>';
+    echo '<h4><a href=detail.php?index=' . $index . '>' . $authors . '</a><h4/>';
     $index++;
+  }
+}
+
+function logged()
+{
+  if (logged_in()) {
+    echo '
+      <br/>
+      <a href="create.php" class="link-tag">
+        <button type="button" class="btn btn-success" type="submit">Create Author</button>
+      </a>
+    ';
   }
 }
 
@@ -36,11 +51,12 @@ function display_authors($authors_array)
     </a>
   </div>
 
-  <h1  class="top-header">Authors name</h1>
+  <h1 class="top-header">Authors name</h1>
   <div class="center-screen">
-  <?php
-  display_authors($authors_array);
-  ?>
+    <?php
+    display_authors($authors_array);
+    logged();
+    ?>
   </div>
 
   <script script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">

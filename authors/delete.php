@@ -1,18 +1,22 @@
 <?php
-include'../csv_util.php'; 
+include '../csv_util.php';
 
-if(!isset($_GET['index'])){
-    die('Please enter the author you want to delete');
+if (!isset($_SESSION['logged']) && $_SESSION['logged'] = true) {
+  die('Go away!');
 }
 
-$fh=fopen('../data/quotes.csv', 'r');
+if (!isset($_GET['index'])) {
+  die('Please enter the author you want to delete');
+}
+
+$fh = fopen('../data/quotes.csv', 'r');
 $index = $_GET['index'];
-$i=0;
-while($line=fgets($fh)) {
-  $line_array = explode(";",$line);
-  if ($index==trim($line_array[0])) {
+$i = 0;
+while ($line = fgets($fh)) {
+  $line_array = explode(";", $line);
+  if ($index == trim($line_array[0])) {
     remove_element('../data/quotes.csv', $i);
-  $i=$i-1;
+    $i = $i - 1;
   }
   $i = $i + 1;
 }

@@ -7,6 +7,10 @@ $authors = read_csv($authors_filename);
 $quotes_filename = 'data/quotes.csv';
 $quotes = read_csv($quotes_filename);
 
+if (!isset($_SESSION['logged']) && $_SESSION['logged'] = true) {
+  die('Go away!');
+}
+
 if (isset($_POST['quote'])) {
   $index = $_GET['quote_id'];
   $new_quote = $_GET['author_index'] . ';' . trim($_POST['quote']);

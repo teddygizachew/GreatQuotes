@@ -1,6 +1,10 @@
 <?php
 include 'csv_util.php';
 
+if (!isset($_SESSION['logged']) && $_SESSION['logged'] = true) {
+  die('Go away!');
+}
+
 $authors_filename = 'data/authors.csv';
 $authors_array = read_csv($authors_filename);
 
