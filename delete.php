@@ -4,6 +4,8 @@ include 'csv_util.php';
 $quotes_filename = 'data/quotes.csv';
 $quotes = read_csv($quotes_filename);
 
+session_start();
+
 if (!isset($_SESSION['logged']) && $_SESSION['logged'] = true) {
   die('Go away!');
 }
