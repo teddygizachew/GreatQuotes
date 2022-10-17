@@ -1,6 +1,8 @@
 <?php
 include 'csv_util.php';
 
+session_start();
+
 $authors_filename = 'data/authors.csv';
 $authors = read_csv($authors_filename);
 
