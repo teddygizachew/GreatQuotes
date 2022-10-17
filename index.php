@@ -1,5 +1,8 @@
 <?php
 include 'csv_util.php';
+include 'auth.php';
+
+session_start();
 
 $authors_filename = 'data/authors.csv';
 $authors_array = read_csv($authors_filename);
@@ -19,6 +22,17 @@ function display_quotes($authors_array, $quotes_array)
     echo '"<a href="detail.php?quote_id=' . $i . '&author_index=' . $author_index . '">' . $single_quote . '</a>"' . ' - ' . $authors_array[$author_index];
     echo '<br/>';
     $i += 1;
+  }
+}
+
+function logged()
+{
+  if (logged_in()) {
+    echo '
+      <a href="create.php" class="link-tag">
+        <button type="button" class="btn btn-success" type="submit">Create Quote</button>
+      </a>
+    ';
   }
 }
 
@@ -49,11 +63,25 @@ function display_quotes($authors_array, $quotes_array)
 
     <br />
     <div class="add-button-div">
-      <a href="create.php">
-        <button type="button" class="btn btn-success" type="submit">Create Quote</button>
-      </a>
-      <a href="authors/index.php">
+      <?php
+      logged()
+      ?>
+      <a href="authors/index.php" class="link-tag">
         <button type="button" class="btn btn-primary" type="submit">View Authors</button>
+      </a>
+      <br>
+      <br>
+      <br>
+      <a href="signup.php" class="link-tag">
+        <button type="button" class="btn btn-outline-info" type="submit">Sign up</button>
+      </a>
+      <a href="signin.php" class="link-tag">
+        <button type="button" class="btn btn-success" type="submit">Sign in</button>
+      </a>
+      <br/>
+      <br/>
+      <a href="signin.php" class="link-tag">
+        <button type="button" class="btn btn-danger" type="submit">Sign out</button>
       </a>
     </div>
   </div>
