@@ -1,5 +1,9 @@
 <?php
 include '../csv_util.php';
+include '../auth.php';
+
+session_start();
+
 $line_counter = 0;
 $index = $_GET['index'];
 $authors_array = read_csv('../data/authors.csv');
@@ -19,7 +23,20 @@ function printQuote($filename,$index){
     fclose($fh);
     }
 
-
+function author_logged()
+{
+  if (logged_in()) {
+    $str = '
+      <a href="modify.php?index=<?= $index ?>">
+        <button type="button" class="btn btn-outline-warning">Modify Author</button>
+      </a>
+      <a href="delete.php?index=<?= $index ?>">
+        <button type="button" class="btn btn-outline-danger">Delete Author</button>
+      </a>
+    ';
+    return $str;
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -45,8 +62,9 @@ function printQuote($filename,$index){
 
 <h1 class="top-header"><?= $author_name ?></h1>
 <div class="add-button-div">
-  <a  href="modify.php?index=<?=$index?>"><button type="button" class="btn btn-outline-warning">Modify Author</button></a>
-  <a  href="delete.php?index=<?=$index?>"><button type="button" class="btn btn-outline-danger">Delete Author</button></a>
+<?php
+echo author_logged();
+?>
   </div>
 <div class="center-screen">
 <?= printQuote('../data/quotes.csv', $index) ?>
