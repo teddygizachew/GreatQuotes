@@ -1,5 +1,7 @@
 <?php
 include 'csv_util.php';
+include 'auth.php';
+
 
 $authors_filename = 'data/authors.csv';
 $authors_array = read_csv($authors_filename);
@@ -49,11 +51,17 @@ function display_quotes($authors_array, $quotes_array)
 
     <br />
     <div class="add-button-div">
-      <a href="create.php">
+      <a href="create.php" class="link-tag">
         <button type="button" class="btn btn-success" type="submit">Create Quote</button>
       </a>
-      <a href="authors/index.php">
+      <a href="authors/index.php" class="link-tag">
         <button type="button" class="btn btn-primary" type="submit">View Authors</button>
+      </a>
+      <br>
+      <br>
+      <br>
+      <a href="signup.php" class="link-tag">
+        <button type="button" class="btn btn-outline-info" type="submit">Sign up</button>
       </a>
     </div>
   </div>
