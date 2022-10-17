@@ -13,7 +13,7 @@ if (isset($_POST['delete'])) {
   remove_element($quotes_filename, $_GET['quote_id']);
   echo '
   <a href="index.php">
-    <button>Go Back to Details</button>
+    <button>Go Back to HomePage</button>
   </a>';
 }
 
@@ -37,7 +37,7 @@ if (isset($_POST['delete'])) {
   <form action="" method="POST" class="center-screen">
     Are you sure you want to delete the following quote?
     <button type="submit" class="btn btn-outline-danger" name="delete" value="submit">Yes</button>
-    <a href="detail.php">
+    <a href="index.php">
       <button type="submit" value="submit" class="btn btn-outline-secondary">No</button>
     </a>
 

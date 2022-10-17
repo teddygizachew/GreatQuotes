@@ -1,5 +1,8 @@
 <?php
 include 'csv_util.php';
+include 'auth.php';
+
+session_start();
 
 $authors_filename = 'data/authors.csv';
 $authors = read_csv($authors_filename);
@@ -7,22 +10,31 @@ $authors = read_csv($authors_filename);
 $quotes_filename = 'data/quotes.csv';
 $quotes = read_csv($quotes_filename);
 
-function display_data($authors, $quotes)
+function display_btns()
 {
-  $quote_line = explode(';', $quotes[$_GET['quote_id']]);
-  $single_quote = $quote_line[1];
-  // echo "<h1> \"{$single_quote}\" - {$authors[$_GET['author_index']]}</h1>";
-  echo  '
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">' . $authors[$_GET['author_index']] . '</h5>
-      <p class="card-text">' . $single_quote . '</p>
+  if (logged_in()) {
+    $str = '
       <a href="delete.php?quote_id=' . $_GET['quote_id'] . '&author_index=' . $_GET['author_index'] . '" style="text-decoration: none;">
         <button type="button" class="btn btn-outline-danger">Delete Quote</button>
       </a>
       <a href="modify.php?quote_id=' . $_GET['quote_id'] . '&author_index=' . $_GET['author_index'] . '" style="text-decoration: none;">
-          <button type="button" class="btn btn-outline-warning">Modify</button>
+        <button type="button" class="btn btn-outline-warning">Modify</button>
       </a>
+    ';
+    return $str;
+  }
+}
+
+function display_data($authors, $quotes)
+{
+  $quote_line = explode(';', $quotes[$_GET['quote_id']]);
+  $single_quote = $quote_line[1];
+  echo  '
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">' . $authors[$_GET['author_index']] . '</h5>
+      <p class="card-text">' . $single_quote . '</p>'
+    . display_btns(). '
     </div>
   </div>
   ';

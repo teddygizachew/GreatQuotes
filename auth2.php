@@ -1,6 +1,6 @@
 <?php
 
-function signup()
+function signup2()
 {
 	if (count($_POST) > 0) {
 		$fh = fopen('users.csv', 'a+');
@@ -21,7 +21,7 @@ function signup()
 
 
 <?php
-function signin()
+function signin2()
 {
 	session_start();
 
@@ -53,7 +53,7 @@ function signin()
 ?>
 
 <?php
-function signout()
+function signout2()
 {
 
 	session_start();
@@ -67,7 +67,6 @@ function signout()
 <?php
 function is_logged()
 {
-	if (isset($_SESSION['logged']) && $_SESSION['logged'] != true)
-		die("Go away!");
+	return (isset($_SESSION['logged']) && $_SESSION['logged'] == true);
 }
 ?>
