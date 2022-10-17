@@ -4,6 +4,9 @@ include 'csv_util.php';
 $quotes_filename = 'data/quotes.csv';
 $quotes = read_csv($quotes_filename);
 
+if (!isset($_SESSION['logged']) && $_SESSION['logged'] = true) {
+  die('Go away!');
+}
 
 $quote_line = explode(';', $quotes[$_GET['quote_id']]);
 $single_quote = $quote_line[1];
