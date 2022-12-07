@@ -114,6 +114,26 @@ function remove_element($filename, $index)
   echo 'You\'ve successfully deleted the quote';
 }
 
+function contain_element($filename, $element){
+  if (file_exists($filename)) {
+    $fh = fopen($filename, 'r');
+    
+
+    while ($line = fgets($fh)) {
+        $line = explode(";",$line);
+        if (trim($line[0])==trim($element)){
+            return TRUE;
+        }
+    }
+    return FALSE;
+    fclose($fh);
+    
+  } else {
+    echo '404: File not found!';
+  }
+  return null;
+}
+
 $filename = 'data/authors.csv';
 // read_csv($filename);
 // get_element($filename, 0);
