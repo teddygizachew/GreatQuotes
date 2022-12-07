@@ -18,9 +18,12 @@ if (count($_POST) > 0) {
   // check if password length is between 8 and 16 characters
   if (strlen($_POST['password']) < 8 && $_POST['password'] > 16) die('Please enter a password between 8 and 16 characters');
 
-
   // check if the password contains at least 2 special characters
+  $regex = "/[^a-zA-Z0-9]/";
 
+  if (!preg_match($regex, $_POST['password']) >= 2) {
+    die('Your password needs to have more than 2 special characters');
+  }
   // check if the file containing banned users exists
   if (contain_element('data/banUser.csv', $_POST['email'])) die('You are a banned user');
   // check if the email has not been banned
@@ -31,7 +34,7 @@ if (count($_POST) > 0) {
   // save the user in the database 
   // show them a success message and redirect them to the sign in page
 
-  //signup();
+  signup();
 }
 
 ?>
