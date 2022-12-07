@@ -1,6 +1,7 @@
 <?php
 
 include 'auth.php';
+include 'csv_util.php';
 
 session_start();
 // if the user is alreay signed in, redirect them to the members_page.php page
@@ -15,18 +16,22 @@ if (count($_POST) > 0) {
   if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) die('Your email is invalid');
 
   // check if password length is between 8 and 16 characters
-  if (strlen($_POST['password']) < 8) die('Please enter a password >=8 characters');
+  if (strlen($_POST['password']) < 8 && $_POST['password'] > 16) die('Please enter a password between 8 and 16 characters');
+
 
   // check if the password contains at least 2 special characters
+
   // check if the file containing banned users exists
+  if (contain_element('data/banUser.csv', $_POST['email'])) die('You are a banned user');
   // check if the email has not been banned
   // check if the file containing users exists
   // check if the email is in the database already
+  if (contain_element('data/users.csv', $_POST['email'])) die('You are a already have an account with this email');
   // encrypt password
   // save the user in the database 
   // show them a success message and redirect them to the sign in page
 
-  signup();
+  //signup();
 }
 
 ?>
