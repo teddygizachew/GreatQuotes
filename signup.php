@@ -18,11 +18,9 @@ if (count($_POST) > 0) {
   // check if password length is between 8 and 16 characters
   if (strlen($_POST['password']) < 8 && $_POST['password'] > 16) die('Please enter a password between 8 and 16 characters');
 
-
   // check if the password contains at least 2 special characters
   $regex = "/[^a-zA-Z0-9]/";
 
-  // Use preg_match to check if the password contains at least 3 special characters
   if (!preg_match($regex, $_POST['password']) >= 2) {
     die('Your password needs to have more than 2 special characters');
   }
